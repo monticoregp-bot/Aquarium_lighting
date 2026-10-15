@@ -30,7 +30,6 @@ The mqtt integration, only if you use MQTT output mode
 A dimmable light for each channel, controllable by one of the output modes below
 
 Installation
-hacs_badge
 
 Installation is easiest via the Home Assistant Community Store (HACS), which is the best place to get third-party integrations for Home Assistant. Once you have HACS set up, simply click the button below (requires My Homeassistant configured) or follow the instructions for adding a custom repository and then the integration will be available to install like any other.
 
