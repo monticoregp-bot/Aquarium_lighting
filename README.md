@@ -1,5 +1,7 @@
 Aquarium Lighting
 
+![Aquarium Lighting Icon](custom_components/aquarium_lighting/brand/icon.png)
+
 A Home Assistant custom integration that gives your aquarium a natural, automatic day/night lighting cycle: smooth sunrise and sunset ramps, per-channel schedules, and two Lovelace cards for viewing and editing everything visually.
 
 No automations to write, no database, no drift. Brightness is always calculated from your schedule and the current time, so restarts, pauses and manual overrides never leave the lights in the wrong state.
