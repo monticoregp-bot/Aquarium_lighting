@@ -30,21 +30,6 @@ The mqtt integration, only if you use MQTT output mode
 A dimmable light for each channel, controllable by one of the output modes below
 Installation
 
-The repository root currently holds the integration files directly, so they need to end up in a folder named aquarium_lighting inside custom_components.
-
-In your Home Assistant config directory, create custom_components/aquarium_lighting/.
-Copy the contents of this repository into that folder (__init__.py, manifest.json, frontend/, translations/, and so on).
-Restart Home Assistant.
-
-Your config directory should look like this:
-
-config/
-└── custom_components/
-    └── aquarium_lighting/
-        ├── __init__.py
-        ├── manifest.json
-        ├── light_controller.py
-        └── ...
 Setup
 1. Create the auto-mode helper
 
