@@ -1,0 +1,49 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Aquarium Lighting",
+        "description": "Create a Toggle helper for this aquarium's auto mode first (Settings > Devices & services > Helpers > Create helper > Toggle), then select it here. Add another entry later for a second aquarium, each with its own helper.",
+        "data": {
+          "name": "Aquarium name",
+          "auto_entity": "Auto-mode toggle (input_boolean)",
+          "output_mode": "Output mode",
+          "transition_seconds": "Ramp transition (seconds)",
+          "resume_transition_seconds": "Resume / edit transition (seconds)"
+        },
+        "data_description": {
+          "auto_entity": "ON = this integration controls the lights. OFF = you do.",
+          "transition_seconds": "Length of the fade sent with each once-a-minute update. 60 gives a continuous ramp.",
+          "resume_transition_seconds": "Fade length used when auto mode is switched on, after a restart, or after a schedule edit."
+        }
+      },
+      "channel": {
+        "title": "First channel",
+        "description": "{target_help} You can add more channels and edit schedules from the Aquarium Lighting card.",
+        "data": {
+          "name": "Channel name",
+          "target": "Target"
+        }
+      }
+    },
+    "error": {
+      "invalid_name": "Use lowercase letters, digits and underscores only (max 32 characters)."
+    },
+    "abort": {
+      "already_configured": "That auto-mode helper is already used by another aquarium."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Aquarium Lighting options",
+        "data": {
+          "auto_entity": "Auto-mode toggle (input_boolean)",
+          "output_mode": "Output mode",
+          "transition_seconds": "Ramp transition (seconds)",
+          "resume_transition_seconds": "Resume / edit transition (seconds)"
+        }
+      }
+    }
+  }
+}
