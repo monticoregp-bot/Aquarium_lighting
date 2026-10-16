@@ -2,18 +2,15 @@
 from __future__ import annotations
 
 import logging
-from pathlib import Path
 
-from homeassistant.components.frontend import add_extra_js_url
-from homeassistant.components.http import StaticPathConfig
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers import entity_registry as er
 
-from . import api
-from .const import DOMAIN, FRONTEND_URL, VERSION
+from . import api, card_resource
+from .const import DOMAIN
 from .coordinator import AquariumLightingCoordinator
 
 _LOGGER = logging.getLogger(__name__)
@@ -26,13 +23,7 @@ async def _async_setup_global(hass: HomeAssistant) -> None:
     if hass.data.get(_GLOBAL_KEY):
         return
     api.async_register(hass)
-    card = Path(__file__).parent / "frontend" / "aquarium-lighting-card.js"
-    await hass.http.async_register_static_paths(
-        [StaticPathConfig(FRONTEND_URL, str(card), cache_headers=False)]
-    )
-    # Some HA versions do not load this automatically; if the cards are
-    # missing, add FRONTEND_URL as a dashboard resource (see README).
-    add_extra_js_url(hass, f"{FRONTEND_URL}?v={VERSION}")
+    await card_resource.async_setup(hass)
     hass.data[_GLOBAL_KEY] = True
 
 
@@ -73,3 +64,10 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
 async def _async_options_updated(hass: HomeAssistant, entry: ConfigEntry) -> None:
     await hass.config_entries.async_reload(entry.entry_id)
+
+
+async def async_remove_entry(hass: HomeAssistant, entry: ConfigEntry) -> None:
+    """Remove the dashboard resource when the last entry is deleted."""
+    remaining = [e for e in hass.config_entries.async_entries(DOMAIN) if e.entry_id != entry.entry_id]
+    if not remaining:
+        await card_resource.async_remove_resource(hass)

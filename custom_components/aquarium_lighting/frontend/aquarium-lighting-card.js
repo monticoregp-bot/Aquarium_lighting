@@ -686,7 +686,7 @@ if (!customElements.get("aquarium-lighting-graph-card")) {
   customElements.define("aquarium-lighting-graph-card", AquariumLightingGraphCard);
 }
 window.customCards = window.customCards || [];
-window.customCards.push(
+[
   {
     type: "aquarium-lighting-card",
     name: "Aquarium Lighting schedule editor",
@@ -696,6 +696,8 @@ window.customCards.push(
     type: "aquarium-lighting-graph-card",
     name: "Aquarium Lighting graph",
     description: "Graph-only view of every channel's brightness over 24 hours, with a current-time line.",
-  }
-);
+  },
+].forEach((card) => {
+  if (!window.customCards.some((c) => c.type === card.type)) window.customCards.push(card);
+});
 })();
